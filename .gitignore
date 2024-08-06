@@ -1,0 +1,45 @@
+node_modules
+
+.env.db
+./frontend/.env
+./backend/.env
+
+# Ignore Terraform state files
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/.terraform*
+terraform/terraform*
+terraform/.terraform.lock.hcl
+
+# Local .terraform directories
+**/.terraform/*
+
+./test_resources/.terraform/*
+./iac/.terraform/*
+
+# Ignore any .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+*.tfvars
+*.tfvars.json
+
+.terraform.tfstate.lock.info
+
+# Ignore override files as they're usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do want to add to version control using negation patterns
+# !example_override.tf
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc

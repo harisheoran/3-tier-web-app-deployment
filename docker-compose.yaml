@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env.db
+    volumes:
+      - my-db:/data/db
+    networks:
+      - backend
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 3s
+      retries: 5
+      start_period: 30s
+  
+  backend:
+    image: backend_img:latest
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - database
+    networks:
+      - backend
+      - frontend
+
+  frontend:
+    image: front_img:latest
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./frontend/.env
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  my-db:
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
