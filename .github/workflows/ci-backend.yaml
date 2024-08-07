@@ -30,7 +30,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{secrets.DOCKERHUB_USERNAME}}/$${{secrets.BACKEND_IMG}}
+          images: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.BACKEND_IMG}}
 
       - name: Build & push the image
         uses: docker/build-push-action@v6

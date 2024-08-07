@@ -31,7 +31,7 @@ app.use('/books', booksRoute);
 mongoose
   .connect(mongoDBURL)
   .then(() => {
-    console.log('App is connected to the database');
+    console.log('App is connected to database');
     app.listen(PORT, () => {
       console.log(`App is listening to the port: ${PORT}`);
     });
