@@ -13,4 +13,5 @@ COPY --chown=node:node . .
 EXPOSE 8000
 
 USER node
+
 CMD [ "node", "index.js" ]
