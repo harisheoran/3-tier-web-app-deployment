@@ -14,6 +14,11 @@ jobs:
   push_to_registry:
     name: Build and Push Image to Registry
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      attestations: write
+      id-token: write
     steps:
       - name: checkout the repository
         uses: actions/checkout@v4
