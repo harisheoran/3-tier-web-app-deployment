@@ -10,7 +10,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY --chown=node:node . .
 
-ENV VITE_SERVER=http://127.0.0.1:8000
+ENV VITE_SERVER=/api
 
 RUN npm run build
 
