@@ -8,6 +8,7 @@ on:
 
 env: 
   REGISTRY: docker.io
+  IMG_NAME: ${{secrets.BACKEND_IMG}}
 
 jobs:
   push_to_registry:
