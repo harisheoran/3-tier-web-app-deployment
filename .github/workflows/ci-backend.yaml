@@ -39,6 +39,7 @@ jobs:
           images: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.BACKEND_IMG}}
 
       - name: Build & push the image
+        id: pushbuild
         uses: docker/build-push-action@v6
         with:
           context: ./backend
@@ -53,5 +54,5 @@ jobs:
         uses: actions/attest-build-provenance@v1
         with:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
-          subject-digest: ${{ steps.push.outputs.digest }}
+          subject-digest: ${{ steps.pushbuild.outputs.digest }}
           push-to-registry: true
