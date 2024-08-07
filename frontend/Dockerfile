@@ -10,8 +10,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY --chown=node:node . .
 
-ENV VITE_SERVER=/api
-
 RUN npm run build
 
 FROM nginx:1.27.0-alpine3.19 AS prod
