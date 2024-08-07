@@ -1,18 +1,24 @@
-name: Push frontend image to Image registry
+name: Push backend image to Image registry
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
     paths:
       - 'frontend/**'
 
 env: 
   REGISTRY: docker.io
+  IMG_NAME: ${{secrets.BACKEND_IMG}}
 
 jobs:
   push_to_registry:
     name: Build and Push Image to Registry
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      attestations: write
+      id-token: write
     steps:
       - name: checkout the repository
         uses: actions/checkout@v4
@@ -30,22 +36,17 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{secrets.DOCKERHUB_USERNAME}}/$${{secrets.FRONTEND_IMG}}
+          images: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.FRONTEND_IMG}}
 
       - name: Build & push the image
+        id: pushbuild
         uses: docker/build-push-action@v6
         with:
           context: ./frontend
-          file: ./frontend/Dockerfile
+          file: ./frontend/Dockerfile.dev
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v1
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
-          subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
