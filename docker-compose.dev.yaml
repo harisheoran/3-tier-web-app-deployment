@@ -18,7 +18,7 @@ services:
   backend:
     image: backend_img:latest
     ports:
-      - "6000:6000"
+      - "8000:8000"
     env_file:
       - ./backend/.env
     depends_on:
@@ -29,13 +29,13 @@ services:
       - frontend-web
 
   frontend:
-    image: front_img:latest
+    image: front_img_dev:latest
     ports:
       - "3000:3000"
+    env_file:
+      - ./frontend/.env
     networks:
       - frontend-web
-    args:
-      - server=http://127.0.0.1:6000
 
 volumes:
   my-db:
