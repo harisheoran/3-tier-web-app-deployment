@@ -1,4 +1,4 @@
-name: Push backend image to Image registry
+name: Push Frontend image to Image registry
 
 on:
   push:

@@ -4,7 +4,7 @@ services:
     ports:
       - "27017:27017"
     env_file:
-      - .env.db
+      - ./env/.env.db
     volumes:
       - my-db:/data/db
     healthcheck:
@@ -12,36 +12,22 @@ services:
       interval: 3s
       retries: 5
       start_period: 30s
-    networks:
-      - backend-web
   
   backend:
-    image: backend_img:latest
+    image: harisheoran/backend_img:master
     ports:
       - "6000:6000"
     env_file:
-      - ./backend/.env
+      - ./env/.env
     depends_on:
-      database:
-        condition: service_healthy
-    networks:
-      - backend-web
-      - frontend-web
+      - database
 
   frontend:
-    image: front_img:latest
+    image: harisheoran/frontend_img:master
     ports:
       - "3000:3000"
-    networks:
-      - frontend-web
-    args:
-      - server=http://127.0.0.1:6000
+    env_file:
+      - ./env-front/.env
 
 volumes:
   my-db:
-
-networks:
-  frontend-web:
-    driver: bridge
-  backend-web:
-    driver: bridge

@@ -5,6 +5,11 @@ resource "aws_instance" "prod_server" {
     vpc_security_group_ids = [aws_security_group.prod_aws_security_group.id]
     associate_public_ip_address = true
 
+    root_block_device {
+        volume_size = 15  # Custom size for the root EBS volume
+    }
+
+
     tags = {
         Name = "Production Server"
     }
