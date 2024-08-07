@@ -10,7 +10,7 @@ RUN npm install --only=production
 
 COPY --chown=node:node . .
 
-EXPOSE 5555
+EXPOSE 8000
 
 USER node
 CMD [ "node", "index.js" ]
