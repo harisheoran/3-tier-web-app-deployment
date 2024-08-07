@@ -1,0 +1,8 @@
+dist
+dist/*
+dist*
+.gitignore
+node_modules
+.env
+.git
+.dockerignore 
