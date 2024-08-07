@@ -10,8 +10,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY --chown=node:node . .
 
-ENV VITE_SERVER=http://127.0.0.1:8000
-
 RUN npm run build
 
 FROM nginx:1.27.0-alpine3.19 AS prod
