@@ -2,7 +2,7 @@ name: Push backend image to Image registry
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
     paths:
       - 'backend/**'
 
