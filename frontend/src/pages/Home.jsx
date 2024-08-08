@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('/books')
+      .get('/api')
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
