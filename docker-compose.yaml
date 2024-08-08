@@ -12,6 +12,11 @@ services:
       interval: 3s
       retries: 5
       start_period: 30s
+    networks:
+      - backend
+    deploy:
+      restart_policy:
+        condition: on-failure
   
   backend:
     image: harisheoran/backend_img:master
@@ -21,11 +26,30 @@ services:
       - ./env/.env
     depends_on:
       - database
+    networks:
+      - backend
+      - frontend
+    deploy:
+      restart_policy:
+        condition: on-failure
 
   frontend:
     image: harisheoran/frontend_img:master
     ports:
       - "3000:3000"
+    networks:
+      - frontend
+    deploy:
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
 
 volumes:
   my-db:
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
