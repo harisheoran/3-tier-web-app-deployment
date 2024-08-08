@@ -53,3 +53,4 @@ jobs:
   deploy:
     needs: push_to_registry
     uses: ./.github/workflows/cd-frontend.yaml
+    secrets: inherit
