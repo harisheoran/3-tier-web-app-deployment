@@ -17,6 +17,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
+        command_timeout: 10m
         script: |
             docker pull harisheoran/frontend_img:master
             docker compose -f docker-compose.yaml up -d
