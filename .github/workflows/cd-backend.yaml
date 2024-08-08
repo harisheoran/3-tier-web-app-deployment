@@ -1,0 +1,24 @@
+name: Deployment Backend
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: deploy latest container
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+            docker pull harisheoran/backend_img:master
+            docker compose -f docker-compose.yaml up -d
+            docker container prune -f
+            docker image prune -f

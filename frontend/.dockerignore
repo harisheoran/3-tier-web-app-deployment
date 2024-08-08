@@ -7,3 +7,5 @@ node_modules
 .git
 .dockerignore 
 nginx.conf
+Dockerfile.dev
+nginx.conf
