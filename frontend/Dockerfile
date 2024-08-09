@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY --chown=node:node package.json .
 
-RUN npm install --only=production
+RUN npm install
 
 ENV PATH /app/node_modules/.bin:$PATH
 
