@@ -3,7 +3,7 @@
 # Deployment Architecture
 ![](./img/3-tier.drawio.svg)
 
-
+[Read the full documentation here](https://harisheoran.xyz/projects/three_tier_mern_deployment/)
 ---
 # Let's start Deploying in Production
 We are going to deploy 3 Tier Web application on AWS in production.
