@@ -8,8 +8,6 @@
 # Let's start Deploying in Production
 We are going to deploy 3 Tier Web application on AWS in production.
 
-***View Website***: https://sparrowbit.co/
-
 (I used a spare domain)
 
 > Alert!! For Production with security
